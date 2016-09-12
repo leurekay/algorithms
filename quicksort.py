@@ -23,7 +23,38 @@ def quickSort(L, low, high):
     quickSort(L, low, i-1)
     quickSort(L, j+1, high)
     return L
+def randQuickSort(L,i,j):
+    pivot=random.randint(0,len(L)-1)
+    #i=0
+    #j=len(L)-1
+    while i != j:
+        while L[j]>L[pivot]:
+            if i==j:
+                break
+            j=j-1
+        while L[i]<L[pivot] or L[i]==L[pivot]:
+            if i==j:
+                break
+            i=i+1
+        L[i],L[j]=L[j],L[i]
+    randQuickSort(L,i,j)
+    randQuickSort(L,i,j)
+
+def insertSort(L):
+    len_L=len(L)
+    for i in range(1,len_L):
+        while i:
+            if L[i] < L[i-1]:
+                L[i-1],L[i]=L[i],L[i-1]
+                i=i-1
+            else:
+                break
+    return L
+    
+    
 #L=[5,0,4,6,8,7,1,3,4,6,12,4,654,354,4,5,7,6,9,6,6,54,7,3,8]
-Lold=[random.random() for i in range(10000)]
+Lold=[random.randint(1,1000) for i in range(1000)]
 L=copy.copy(Lold)
-Lnew=quickSort(L, 0, len(L)-1)
+#Lnew=quickSort(L, 0, len(L)-1)
+L_loc=L.sort
+b=insertSort(L)
